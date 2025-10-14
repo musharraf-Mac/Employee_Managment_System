@@ -67,8 +67,11 @@ h1{
     background-color: white;
     color:black;
 }
+.hide_b{
+    display:none;
+}
 .reg{
-     background-color:#460101;
+    background-color:#460101;
     color:white;
     padding-top:5px;
     padding-bottom:5px;
@@ -78,4 +81,35 @@ h1{
     width:350px;
     margin:15px;
     font-size:35px;
+}
+.reg:hover{
+   opacity:0.6;
+    cursor: pointer;
+}
+.reg:active{
+    scale:0.8;
+    background-color: white;
+    color:black;
+}
+.login_c{
+    /*display: none;*/ 
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    width:300px;
+    margin-top:100px;
+    margin-left:500px;
+    margin:auto;
+}
+.login_form{
+    
+    padding: 20px; 
+    border-radius: 5px;
+}
+.bg_login{
+    background: blur(12px);
+}
+.close{
+    font-size:20px;
+    
 }
