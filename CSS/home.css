@@ -7,7 +7,9 @@ body{
     background-size: cover;
     background-attachment: fixed;
     font-family: 'marker Felt,fantasy';
-
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .cont_1{
@@ -111,5 +113,16 @@ h1{
 }
 .close{
     font-size:20px;
+    
+}
+footer{
+    text-align: center;
+    color: white;   
+    padding: 20px;
+    background-color:black;
+    margin-top:auto;
+    margin-bottom:0;
+    margin-left:0;
+    margin-right:0;
     
 }

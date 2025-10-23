@@ -1,0 +1,54 @@
+body{
+    background-color: black;
+
+}
+.login_div{
+    background-color:rgb(237, 158, 158);
+    text-align:center;
+    width:230px;
+    padding:20px;
+    margin:250px;
+    border-radius:18px;
+    
+}
+h1{
+    font-size:40px;
+}
+.close{
+   text-align: right;
+   margin-left:210px;
+   font-size:35px;
+   margin-top:25px;
+}
+.close:hover{
+    cursor:pointer;
+    color:red;
+}
+.close:active{
+    opacity:0.5;
+}
+.input{
+    margin:8px;
+    padding:4px;
+    border-radius:5px;
+}
+.sub_btn{
+    background-color:rgb(74,1,1);
+    color:white;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:8px;
+    padding-left:8px;
+    border-radius: 10px;
+    width:100px;    
+    font-size:20px;
+}
+.sub_btn:hover{
+   opacity:0.6;
+    cursor: pointer;
+}   
+.sub_btn:active{
+    scale:0.8;
+    background-color: white;
+    color:black;
+}

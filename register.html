@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register page</title>
+        <link rel="stylesheet" href="css/reg.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <script src="js/reg.js"></script>
+    </head>
+    <body>
+     <center>   <div class="reg_div" id="reg_div">
+         <a class="close" onclick="closef()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
+            <h1>Register</h1>
+            <form action="reg.php" method="post" id="reg_f">
+                <input class = "input_1" type="text" name="First_Name" placeholder="Enter you first Name" required><br>
+                <input class = "input_1" type="text" name="Last_Name" placeholder="Enter your last Name" required><br>
+                <input class="input_1" type ="number" name="phone" placeholder="Phone Number" required><br>
+                <input class="input_1" type="email" name="email" placeholder="Email" required><br>
+                <input class="input_1" type="password" name="password" placeholder="Password" required><br>
+                <input class="input_1" type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+
+                <button class="sub_btn" type="submit">Request account</button>
+                <p>Already have an account? <a class="login" href="login.html">Login</a></p>
+            </form>
+        </div> </center>       
+    </body>
+</html>
