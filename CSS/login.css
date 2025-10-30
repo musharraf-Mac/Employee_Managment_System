@@ -1,22 +1,28 @@
 body{
-    background-color: black;
+    background:url(../Images/BG_Reg.jpg);
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed
 
 }
 .login_div{
-    background-color:rgb(237, 158, 158);
-    text-align:center;
-    width:230px;
-    padding:20px;
-    margin:250px;
-    border-radius:18px;
-    
+    border:solid 4px black;
+    width: 300px;
+    margin-top:250px;
+    border-radius:20px;
+    background:rgba(5,2,69,0.45);
+    backdrop-filter: blur(8px);
+    font-weight:bold;
+    font-size: 18px;
+    color:white;
+    padding:10px;    
 }
 h1{
     font-size:40px;
 }
 .close{
    text-align: right;
-   margin-left:210px;
+   margin-left:265px;
    font-size:35px;
    margin-top:25px;
 }

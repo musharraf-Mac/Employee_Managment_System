@@ -4,23 +4,37 @@
         <title>Register page</title>
         <link rel="stylesheet" href="css/reg.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <script src="js/reg.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <script src="JS/reg.js"></script>
     </head>
     <body>
      <center>   <div class="reg_div" id="reg_div">
          <a class="close" onclick="closef()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
             <h1>Register</h1>
-            <form action="reg.php" method="post" id="reg_f">
+            <form action="req_acc.php" method="post" id="reg_f">
                 <input class = "input_1" type="text" name="First_Name" placeholder="Enter you first Name" required><br>
                 <input class = "input_1" type="text" name="Last_Name" placeholder="Enter your last Name" required><br>
                 <input class="input_1" type ="number" name="phone" placeholder="Phone Number" required><br>
                 <input class="input_1" type="email" name="email" placeholder="Email" required><br>
-                <input class="input_1" type="password" name="password" placeholder="Password" required><br>
-                <input class="input_1" type="password" name="confirm_password" placeholder="Confirm Password" required><br>
-
+                <input class="input_1" type="text" name="E_id" id="E_id" placeholder="Enter your Employee ID" required><br>
+                <input class="input_1" type="text" name="pos" id="pos" placeholder="Enter your Position" required><br>
+                <input class="chk_bx" type="checkbox" name="agree" required>Agree with <a class="term_T" id="term_T" onclick="showTerms()">terms and condition</a><br>
                 <button class="sub_btn" type="submit">Request account</button>
                 <p>Already have an account? <a class="login" href="login.html">Login</a></p>
             </form>
-        </div> </center>       
+        </div> </center>
+        <div class="terms termsh animate__animated" id="terms">
+            <h2>Terms and Conditions</h2>
+            <p>By registering an account, you agree to abide by our terms and conditions. Please read them carefully before proceeding.</p>
+            <ul>
+                <li>You must provide accurate and truthful information during registration.</li><br>
+                <li>Your account is for personal use only and should not be shared with others.</li><br>
+                <li>You are responsible for maintaining the confidentiality of your account credentials.</li><br>
+                <li>We reserve the right to suspend or terminate accounts that violate our terms.</li><br>
+                <li>By using our services, you consent to our data collection and privacy practices.</li>
+                <li>After you submitted your info here we will verify and allows to create your account wait patiently until we accept you request</li>
+                <li>By getting the account you can edit employee details So, agree i will misuse this feature</li>
+            </ul>
+            <center><button class="term_btn" id="term_btn" onclick="closeTerms()">Ok</button></center>
     </body>
 </html>

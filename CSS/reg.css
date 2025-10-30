@@ -1,0 +1,103 @@
+body{
+    background:url(../Images/BG_Reg.jpg);
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+.sub_btn{
+    background-color:rgb(74,1,1);
+    color:white;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:8px;
+    padding-left:8px;
+    border-radius: 10px;
+    width:auto;    
+    font-size:18px;
+    margin :10px;
+}
+.close{
+   text-align: right;
+   margin-left:265px;
+   font-size:35px;
+   margin-top:25px;
+}
+.close:hover{
+    cursor:pointer;
+    color:red;
+}
+.close:active{
+    opacity:0.5;
+}
+.input_1{
+    margin:8px;
+    padding:4px;
+    border-radius:5px;
+}
+.chk_bx{
+    margin-top:30px;
+    margin-bottom:12px;
+}
+.reg_div{
+    border:solid 4px black;
+    width: 300px;
+    margin-top:150px;
+    border-radius:20px;
+    background:rgba(5,2,69,0.45);
+    backdrop-filter: blur(8px);
+    font-weight:bold;
+    font-size: 18px;
+    color:white;
+    padding:10px;
+}
+.terms{
+    position:fixed;
+    align-items:center;
+    justify-content:center;
+    top:20%;
+    border:solid 5px ;
+    left:33.5%;
+    background-color:rgba(0,0,0,0.8);
+    color:white;
+    padding:10px;
+    height:auto;
+    width:30%;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-radius:15px;
+    font-size:18px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    z-index:1000;
+}
+.termsh{
+    display:none;
+}
+.term_btn{
+    font-size:20px;
+    padding:5px;
+    border-radius:5px;
+    margin-top:8px;
+    margin-bottom:8px;
+    width:80px;
+}
+.term_btn:hover{
+    background-color:blue;
+    color:white;
+    cursor:pointer;
+}
+.term_btn:active{
+    opacity:0.6;
+    background-color: red;
+}
+.term_T{
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+.term_T:hover{
+    color:darkblue;
+}
+.term_T:active{
+    opacity:0.6;
+}

@@ -2,7 +2,7 @@
     font-family: 'marker Felt,fantasy'
 }
 body{
-    background:url(images/bg_1.jpg);
+    background:url(../Images/Bg_1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
