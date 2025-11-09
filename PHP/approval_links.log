@@ -1,0 +1,7 @@
+[2025-11-08T09:33:27+01:00] musharrafcm97@outlook.com
+Approve: http://localhost/Employee_Managment_System/php/approve.php?token=71147e6ade91c4208d0636e6add7a83fcd7560247cf4d3c493bc3a7b70548b0d
+Deny: http://localhost/Employee_Managment_System/php/deny.php?token=71147e6ade91c4208d0636e6add7a83fcd7560247cf4d3c493bc3a7b70548b0d
+
+[2025-11-09T11:54:55+01:00] Sent set-password to musharrafcm97@outlook.com
+Set-pass: http://localhost/Employee_Managment_System/php/set_password.php?token=be4ab30c7ddd20030b72c32ffbc63d7de1f81eb80610284b8c602e8c61366024
+

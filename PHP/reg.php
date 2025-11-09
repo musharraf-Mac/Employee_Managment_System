@@ -38,7 +38,7 @@ if ($stmt = $conn->prepare($sql)) {
         $approveUrl = $base . '/approve.php?token=' . urlencode($adminToken);
         $denyUrl = $base . '/deny.php?token=' . urlencode($adminToken);
 
-        $adminEmail = 'musharrafcm97@outlook.com'; // change to real admin email
+        $adminEmail = 'musharrafcm97@outlook.com'; 
         $subject = 'New admin registration pending approval';
         $message = "New registration:\n\nName: $First_Name $Last_Name\nEmail: $email\nPhone: $phone\nE_id: $E_id\nPosition: $pos\n\nApprove: $approveUrl\nDeny: $denyUrl\n\nExpires: $expiresAt";
         $headers = "From: no-reply@example.com\r\n";
