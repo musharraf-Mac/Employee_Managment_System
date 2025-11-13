@@ -108,14 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $ins->close();
 
-    // Delete pending row
-    $del = $conn->prepare("DELETE FROM admin_info_temp WHERE E_id = ?");
-    if ($del) {
-        $del->bind_param('s', $pending['E_id']);
-        $del->execute();
-        $del->close();
-    }
-
     $conn->commit();
 
     render_page('Success', '<div class="p_cont"><h2>Password set</h2><p>Your account has been created. <a href="/Employee_Managment_System/login.html">Login</a></p></div>');

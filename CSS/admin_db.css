@@ -1,0 +1,63 @@
+body{
+    background-image: url("/Images/Bg_admin.jpg");
+    
+}
+.tit_1{
+    text-align: center;
+    color:white;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.sub_btn{
+    background-color:rgb(74,1,1);
+    color:white;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:8px;
+    padding-left:8px;
+    border-radius: 10px;
+    width:auto;    
+    font-size:18px;
+    margin :10px;
+}
+.sub_btn:hover{
+    background-color:rgb(120,89,56);
+    cursor:pointer;
+}
+.sub_btn:active{
+    opacity:0.6;
+    background-color:red;
+}
+.emp_add_c{
+    border:solid 4px black;
+    width: 200px;
+    margin-top:150px;
+    border-radius:20px;
+    background:rgba(5,2,69,0.45);
+    backdrop-filter: blur(8px);
+    font-weight:bold;
+    font-size: 18px;
+    color:white;
+    padding:10px;
+}
+.input_1{
+    margin:8px;
+    padding:4px;
+    border-radius:5px;
+}
+.close{
+   text-align: right;
+   margin-left:170px;
+   font-size:28px;
+   margin-top:25px;
+}
+.close:hover{
+    cursor:pointer;
+    color:red;
+}
+.close:active{
+    opacity:0.5;
+}
+.hide_e{
+    display:none;
+}

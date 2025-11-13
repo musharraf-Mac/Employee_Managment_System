@@ -5,3 +5,18 @@ Deny: http://localhost/Employee_Managment_System/php/deny.php?token=71147e6ade91
 [2025-11-09T11:54:55+01:00] Sent set-password to musharrafcm97@outlook.com
 Set-pass: http://localhost/Employee_Managment_System/php/set_password.php?token=be4ab30c7ddd20030b72c32ffbc63d7de1f81eb80610284b8c602e8c61366024
 
+[2025-11-12T22:01:53+01:00] abdmusharraf2001@gmail.com
+Approve: http://localhost/Employee_Managment_System/php/approve.php?token=9a551cb3753084ee2132a8b50df09b7e04e97c18664c62a9c90076d46b5fcbca
+Deny: http://localhost/Employee_Managment_System/php/deny.php?token=9a551cb3753084ee2132a8b50df09b7e04e97c18664c62a9c90076d46b5fcbca
+
+[2025-11-12T22:02:57+01:00] Sent set-password to abdmusharraf2001@gmail.com
+Set-pass: http://localhost/Employee_Managment_System/php/set_password.php?token=648cf62ca100aa42024b30ae7d42feedf441eb8b7a8064ec0887844d509813ab
+
+[2025-11-12T22:15:25+01:00] abdmusharraf2001@gmail.com
+Approve: http://localhost/Employee_Managment_System/php/approve.php?token=79011c8d40bfc57ffe0c5ce27c0441e3f952679cf194266059e2fddbf2980c33
+Deny: http://localhost/Employee_Managment_System/php/deny.php?token=79011c8d40bfc57ffe0c5ce27c0441e3f952679cf194266059e2fddbf2980c33
+
+[2025-11-12T22:16:48+01:00] abdmusharraf2001@gmail.com
+Approve: http://localhost/Employee_Managment_System/php/approve.php?token=ee7b166dfd35c9f1f3da6f0ba12621ef89d691f3bcaf0eed3de6cbd0807f1c7b
+Deny: http://localhost/Employee_Managment_System/php/deny.php?token=ee7b166dfd35c9f1f3da6f0ba12621ef89d691f3bcaf0eed3de6cbd0807f1c7b
+

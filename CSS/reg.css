@@ -17,6 +17,14 @@ body{
     font-size:18px;
     margin :10px;
 }
+.sub_btn:hover{
+    background-color:rgb(120,89,56);
+    cursor:pointer;
+}
+.sub_btn:active{
+    opacity:0.6;
+    background-color:red;
+}
 .close{
    text-align: right;
    margin-left:265px;
