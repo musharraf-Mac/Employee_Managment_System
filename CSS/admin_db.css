@@ -61,3 +61,15 @@ body{
 .hide_e{
     display:none;
 }
+.btn_1{
+    background-color:#01451b;
+    color:white;
+    padding:8px;
+    border-radius:10px;
+    font-size:18px;
+    margin:10px;
+}
+.btn_1:hover{
+    background-color:rgb(120,89,56);
+    cursor:pointer;
+}
