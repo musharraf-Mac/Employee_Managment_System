@@ -1,5 +1,5 @@
 body{
-    background-image: url("/Images/Bg_admin.jpg");
+    background-image: url("../Images/Bg_admin.jpg");
     
 }
 .tit_1{
@@ -30,8 +30,7 @@ body{
 }
 .emp_add_c{
     border:solid 4px black;
-    width: 200px;
-    margin-top:150px;
+    width: 350px;    
     border-radius:20px;
     background:rgba(5,2,69,0.45);
     backdrop-filter: blur(8px);
@@ -39,15 +38,19 @@ body{
     font-size: 18px;
     color:white;
     padding:10px;
+    position:fixed;
+    margin-left:440px;
 }
 .input_1{
     margin:8px;
     padding:4px;
     border-radius:5px;
+    width:280px;
+    height:30px;
 }
 .close{
    text-align: right;
-   margin-left:170px;
+   margin-left:300px;
    font-size:28px;
    margin-top:25px;
 }
@@ -72,4 +75,7 @@ body{
 .btn_1:hover{
     background-color:rgb(120,89,56);
     cursor:pointer;
+}
+.btn_c1{
+    text-align: center;
 }

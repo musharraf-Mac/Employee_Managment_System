@@ -3,7 +3,7 @@
     <head>
         <title>Admin Database</title>
         <!--CSS files-->
-        <link rel="stylesheet" href="css/admin_db.css">
+       <link rel="stylesheet" href="CSS/admin_db.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
          <!--JS files-->
@@ -11,9 +11,8 @@
     </head>
     <body>
         <h1 class="tit_1">Admin Dashboard <i class="fa fa-dashboard" aria-hidden="true"></i></h1>
-        <button class="btn_1" onclick="openf()">Add Employee</button><br>
-        <button class="btn_1" onclick="openU()">Edit Employees</button>
-        <center><div class="emp_add_c hide_e" id="emp_add_c">
+        <div class="btn_c1" id="btn_c1">
+            <div class="emp_add_c hide_e" id="emp_add_c">
              <a class="close" onclick="closef()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
         <form id="Emp_add" action="php/emp_add.php" method="post">
             <input class="input_1" type="text" name="E_id" placeholder="Employee ID" required><br>
@@ -24,7 +23,11 @@
             <input class="input_1" type="email" name="email" placeholder="Email" required><br>
             <input class="sub_btn" type="submit" value="Add Employee">
         </form>
-        </div> </center>
+        </div>
+        <button class="btn_1" onclick="openf()">Add Employee</button><br>
+        <button class="btn_1" onclick="openU()">Edit Employees</button>
+        </div>
+        
 
     </body>
 </html>
