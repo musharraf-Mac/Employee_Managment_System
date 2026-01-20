@@ -35,7 +35,12 @@ if (password_verify($password, $admin['password_hash'])) {
     $conn->close();
     ?>
     <script>
-        alert("Login successful! Welcome");
+        // Store admin info in sessionStorage for frontend access
+        sessionStorage.setItem('admin_id', '<?php echo htmlspecialchars($admin['E_id']); ?>');
+        sessionStorage.setItem('admin_name', '<?php echo htmlspecialchars($admin['First_Name'] . ' ' . $admin['Last_Name']); ?>');
+        sessionStorage.setItem('admin_email', '<?php echo htmlspecialchars($admin['email']); ?>');
+        
+        alert("Login successful! Welcome <?php echo htmlspecialchars($admin['First_Name']); ?>");
         window.location.href = "/Employee_Managment_System/Admin_db.html";
     </script>
     

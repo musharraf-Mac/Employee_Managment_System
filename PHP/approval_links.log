@@ -27,3 +27,10 @@ Deny: http://localhost/Employee_Managment_System/php/deny.php?token=fd4043eb268f
 [2025-12-01T12:38:13+01:00] Sent set-password to test@outlook.com
 Set-pass: http://localhost/Employee_Managment_System/php/set_password.php?token=c73812cc8253aaf56ef300d4f8ec74a359fca07a543204d35d40ce9125d46691
 
+[2026-01-20T18:46:42+01:00] test2@outlook.com
+Approve: http://localhost/Employee_Managment_System/PHP/approve.php?token=4e0253734322c7c35cb0b4100d564e2218363f8da1f0c387134461e2614cc23c
+Deny: http://localhost/Employee_Managment_System/PHP/deny.php?token=4e0253734322c7c35cb0b4100d564e2218363f8da1f0c387134461e2614cc23c
+
+[2026-01-20T18:47:04+01:00] Sent set-password to test2@outlook.com
+Set-pass: http://localhost/Employee_Managment_System/PHP/set_password.php?token=23c36fe7892472d50acba419f07949dac8019795027c323fb657579a1637bb0e
+

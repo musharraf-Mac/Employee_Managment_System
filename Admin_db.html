@@ -1,33 +1,137 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Admin Database</title>
-        <!--CSS files-->
-       <link rel="stylesheet" href="CSS/admin_db.css">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-         <!--JS files-->
-        <script src="JS/admin_db.js"></script>
-    </head>
-    <body>
-        <h1 class="tit_1">Admin Dashboard <i class="fa fa-dashboard" aria-hidden="true"></i></h1>
-        <div class="btn_c1" id="btn_c1">
-            <div class="emp_add_c hide_e" id="emp_add_c">
-             <a class="close" onclick="closef()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
-        <form id="Emp_add" action="php/emp_add.php" method="post">
-            <input class="input_1" type="text" name="E_id" placeholder="Employee ID" required><br>
-            <input class="input_1" type="text" name="First_Name" placeholder="First Name" required><br>
-            <input class="input_1" type="text" name="Last_Name" placeholder="Last Name"><br>
-            <input class="input_1" type="text" name="Department" placeholder="Department"><br>
-            <input class="input_1" type="number" name="phone" placeholder="Phone" required><br>
-            <input class="input_1" type="email" name="email" placeholder="Email" required><br>
-            <input class="sub_btn" type="submit" value="Add Employee">
-        </form>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EMS</title>
+    <link rel="stylesheet" href="CSS/admin_db.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="JS/admin_db.js" defer></script>
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-users-cog"></i>
+            <span>EMS</span>
+        </a>
+        <div class="nav-info">
+            <span class="welcome-text">Welcome, <span id="admin-name">Admin</span></span>
+            <a href="#" class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         </div>
-        <button class="btn_1" onclick="openf()">Add Employee</button><br>
-        <button class="btn_1" onclick="openU()">Edit Employees</button>
-        </div>
-        
+    </nav>
 
-    </body>
+    <main class="dashboard-container">
+        <div class="dashboard-header animate__animated animate__fadeInDown">
+            <div class="header-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h1>Admin Dashboard</h1>
+            <p>Manage your employees efficiently</p>
+        </div>
+
+        <div class="dashboard-actions">
+            <button class="action-btn add-btn animate__animated animate__zoomIn" onclick="openf()">
+                <i class="fas fa-user-plus"></i>
+                <span>Add Employee</span>
+            </button>
+            <button class="action-btn edit-btn animate__animated animate__zoomIn" onclick="openU()">
+                <i class="fas fa-edit"></i>
+                <span>Edit Employees</span>
+            </button>
+            <button class="action-btn view-btn animate__animated animate__zoomIn" onclick="viewEmployees()">
+                <i class="fas fa-users"></i>
+                <span>View All</span>
+            </button>
+        </div>
+
+        <!-- Add Employee Modal -->
+        <div class="modal-overlay" id="emp_add_c">
+            <div class="modal-card animate__animated animate__zoomIn">
+                <a class="close-btn" onclick="closef()">
+                    <i class="fas fa-times"></i>
+                </a>
+                
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2>Add New Employee</h2>
+                    <p>Fill in the employee details below</p>
+                </div>
+                
+                <form id="Emp_add" action="PHP/emp_add.php" method="post" class="employee-form">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <i class="fas fa-id-badge"></i>
+                            <input type="text" name="E_id" placeholder="Employee ID" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="First_Name" placeholder="First Name" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="Last_Name" placeholder="Last Name" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-building"></i>
+                            <input type="text" name="Department" placeholder="Department" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="number" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-submit" type="submit">
+                        <i class="fas fa-check"></i> Add Employee
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Employee Management System | Crafted by MRAR.Musharraf</p>
+    </footer>
+
+    <script>
+        // Load admin name from session on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminName = sessionStorage.getItem('admin_name');
+            if (adminName) {
+                document.getElementById('admin-name').textContent = adminName.split(' ')[0];
+            }
+        });
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        function viewEmployees() {
+            window.location.href = 'E_details.html';
+        }
+    </script>
+</body>
 </html>
