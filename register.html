@@ -1,40 +1,132 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Register page</title>
-        <link rel="stylesheet" href="css/reg.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-        <script src="JS/reg.js"></script>
-    </head>
-    <body>
-     <center>   <div class="reg_div" id="reg_div">
-         <a class="close" onclick="closef()"><i class="fa-sharp fa-solid fa-xmark"></i></a>
-            <h1>Register</h1>
-            <form action="php/reg.php" method="post" id="reg_f">
-                <input class = "input_1" type="text" name="First_Name" placeholder="Enter you first Name" required><br>
-                <input class = "input_1" type="text" name="Last_Name" placeholder="Enter your last Name" required><br>
-                <input class="input_1" type ="number" name="phone" placeholder="Phone Number" required><br>
-                <input class="input_1" type="email" name="email" placeholder="Email" required><br>
-                <input class="input_1" type="text" name="E_id" id="E_id" placeholder="Enter your Employee ID" required><br>
-                <input class="input_1" type="text" name="pos" id="pos" placeholder="Enter your Position" required><br>
-                <input class="chk_bx" type="checkbox" name="agree" required>Agree with <a class="term_T" id="term_T" onclick="showTerms()">terms and condition</a><br>
-                <button class="sub_btn" type="submit">Request account</button>
-                <p>Already have an account? <a class="login" href="login.html">Login</a></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EMS</title>
+    <link rel="stylesheet" href="CSS/reg.css">
+    <script src="JS/reg.js" defer></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-users-cog"></i>
+            <span>EMS</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="login.html" class="nav-link">Login</a>
+        </div>
+    </nav>
+
+    <main class="register-container">
+        <div class="register-card animate__animated animate__fadeInUp">
+            <a class="close-btn" href="index.html">
+                <i class="fas fa-times"></i>
+            </a>
+            
+            <div class="card-header">
+                <div class="icon-circle">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Create Account</h1>
+                <p>Register as an admin to manage employees</p>
+            </div>
+            
+            <form action="PHP/reg.php" method="post" id="reg_f" class="register-form">
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="First_Name" placeholder="First Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="Last_Name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="number" name="phone" placeholder="Phone Number" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-id-badge"></i>
+                        <input type="text" name="E_id" id="E_id" placeholder="Employee ID" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-briefcase"></i>
+                        <input type="text" name="pos" id="pos" placeholder="Position" required>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" name="agree" id="agree" required>
+                    <label for="agree">I agree to the <a href="#" onclick="showTerms(); return false;">Terms & Conditions</a></label>
+                </div>
+                
+                <button class="btn-submit" type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Request Account</span>
+                </button>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <p class="login-link">
+                    Already have an account? <a href="login.html">Sign in here</a>
+                </p>
             </form>
-        </div> </center>
-        <div class="terms termsh animate__animated" id="terms">
-            <h2>Terms and Conditions</h2>
-            <p>By registering an account, you agree to abide by our terms and conditions. Please read them carefully before proceeding.</p>
-            <ul>
-                <li>You must provide accurate and truthful information during registration.</li><br>
-                <li>Your account is for personal use only and should not be shared with others.</li><br>
-                <li>You are responsible for maintaining the confidentiality of your account credentials.</li><br>
-                <li>We reserve the right to suspend or terminate accounts that violate our terms.</li><br>
-                <li>By using our services, you consent to our data collection and privacy practices.</li>
-                <li>After you submitted your info here we will verify and allows to create your account wait patiently until we accept you request</li>
-                <li>By getting the account you can edit employee details So, agree i will misuse this feature</li>
-            </ul>
-            <center><button class="term_btn" id="term_btn" onclick="closeTerms()">Ok</button></center>
-    </body>
+        </div>
+    </main>
+    
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="terms-modal animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-contract"></i> Terms and Conditions</h2>
+                <button class="modal-close" onclick="closeTerms()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>By registering an account, you agree to abide by our terms and conditions. Please read them carefully before proceeding.</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> You must provide accurate and truthful information during registration.</li>
+                    <li><i class="fas fa-check-circle"></i> Your account is for personal use only and should not be shared with others.</li>
+                    <li><i class="fas fa-check-circle"></i> You are responsible for maintaining the confidentiality of your account credentials.</li>
+                    <li><i class="fas fa-check-circle"></i> We reserve the right to suspend or terminate accounts that violate our terms.</li>
+                    <li><i class="fas fa-check-circle"></i> By using our services, you consent to our data collection and privacy practices.</li>
+                    <li><i class="fas fa-check-circle"></i> After submission, we will verify and allow you to create your account. Please wait patiently until we accept your request.</li>
+                    <li><i class="fas fa-check-circle"></i> By getting the account you can edit employee details. Agree not to misuse this feature.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-accept" onclick="closeTerms()">
+                    <i class="fas fa-check"></i> I Understand
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Employee Management System | Crafted by MRAR.Musharraf</p>
+    </footer>
+</body>
 </html>
