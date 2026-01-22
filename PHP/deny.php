@@ -14,6 +14,6 @@ if ($stmt) {
 $conn->close();
 echo "<script>
     alert('The registration request has been denied.');
-    window.location.href = '/Employee_Managment_System/home.html';
+    window.location.href = '../index.html';
 </script>";
 ?>

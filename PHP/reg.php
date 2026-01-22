@@ -35,7 +35,8 @@ if ($stmt = $conn->prepare($sql)) {
     if ($stmt->execute()) {
         // Build admin approval/deny links (logged for local dev)
         $base = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-        $approveUrl = $base . '/approve.php?token=' . urlencode($adminToken);
+        // NOTE: InfinityFree/Linux is case-sensitive; file is Approve.php
+        $approveUrl = $base . '/Approve.php?token=' . urlencode($adminToken);
         $denyUrl = $base . '/deny.php?token=' . urlencode($adminToken);
 
         $adminEmail = 'musharrafcm97@outlook.com'; 
@@ -51,7 +52,8 @@ if ($stmt = $conn->prepare($sql)) {
         ?>
         <script>
             alert("Your information has been submitted for review. You will be notified once approved.");
-            window.location.href = "/Employee_Managment_System/home.html";
+            // Redirect relative to /PHP/reg.php
+            window.location.href = "../index.html";
         </script>
         <?php
         $stmt->close();

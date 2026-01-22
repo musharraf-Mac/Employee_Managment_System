@@ -41,15 +41,15 @@ if (password_verify($password, $admin['password_hash'])) {
         sessionStorage.setItem('admin_email', '<?php echo htmlspecialchars($admin['email']); ?>');
         
         alert("Login successful! Welcome <?php echo htmlspecialchars($admin['First_Name']); ?>");
-        window.location.href = "/Employee_Managment_System/Admin_db.html";
+        // Use relative redirect (InfinityFree path may not be /Employee_Managment_System)
+        window.location.href = "../Admin_db.html";
     </script>
     
     <?php
 } else { ?>
-    // Invalid credentials
     <script>
         alert("Invalid email or password.");  
-        window.location.href = "/Employee_Managment_System/login.html";      
+        window.location.href = "../login.html";
     </script>
     <?php
 }
