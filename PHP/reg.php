@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/db.php';
+require __DIR__ . '/brevo_mail.php';
 
 // Collect and sanitize input
 $First_Name = trim($_POST['First_Name'] ?? '');
@@ -40,20 +41,39 @@ if ($stmt = $conn->prepare($sql)) {
         $denyUrl = $base . '/deny.php?token=' . urlencode($adminToken);
 
         $adminEmail = 'musharrafcm97@outlook.com'; 
-        $subject = 'New admin registration pending approval';
-        $message = "New registration:\n\nName: $First_Name $Last_Name\nEmail: $email\nPhone: $phone\nE_id: $E_id\nPosition: $pos\n\nApprove: $approveUrl\nDeny: $denyUrl\n\nExpires: $expiresAt";
-        $headers = "From: no-reply@example.com\r\n";
-
-        // Try to send email (may fail on local environment), also log links to a file
-        @mail($adminEmail, $subject, $message, $headers);
-        file_put_contents(__DIR__ . '/approval_links.log', "[" . date('c') . "] $email\nApprove: $approveUrl\nDeny: $denyUrl\n\n", FILE_APPEND);
+        
+       $userData = [
+            'First_Name' => $First_Name,
+            'Last_Name' => $Last_Name,
+            'email' => $email,
+            'phone' => $phone,
+            'E_id' => $E_id,
+            'pos' => $pos
+        ];
+        
+        $emailResult = sendAdminApprovalEmail($adminEmail, $userData, $approveUrl, $denyUrl, $expiresAt);
+        
+        // Log the result (optional)
+        if ($emailResult['success']) {
+            file_put_contents(__DIR__ . '/email_log.txt', 
+                "[" . date('c') . "] Email sent to $adminEmail - MessageID: {$emailResult['messageId']}\n", 
+                FILE_APPEND);
+        } else {
+            file_put_contents(__DIR__ . '/email_log.txt', 
+                "[" . date('c') . "] Email FAILED to $adminEmail - Error: {$emailResult['message']}\n", 
+                FILE_APPEND);
+        }
+        
+        // Also log approval links as backup
+        file_put_contents(__DIR__ . '/approval_links.log', 
+            "[" . date('c') . "] $email\nApprove: $approveUrl\nDeny: $denyUrl\n\n", 
+            FILE_APPEND);
 
         // Inform the user
         ?>
         <script>
             alert("Your information has been submitted for review. You will be notified once approved.");
-            // Redirect relative to /PHP/reg.php
-            window.location.href = "../index.html";
+            window.location.href = "/Employee_Managment_System/index.html";
         </script>
         <?php
         $stmt->close();
@@ -61,15 +81,11 @@ if ($stmt = $conn->prepare($sql)) {
         exit;
     } else {
         $err = $stmt->error;
-        $stmt->close();
-        $conn->close();
-        header('Content-Type: text/plain; charset=utf-8', true, 500);
-        echo "Database error: " . htmlspecialchars($err);
-        exit;
+        echo "Error: " . htmlspecialchars($err);
     }
+    $stmt->close();
 } else {
-    header('Content-Type: text/plain; charset=utf-8', true, 500);
-    echo "Prepare failed: " . htmlspecialchars($conn->error);
-    exit;
+    echo "Error preparing statement: " . htmlspecialchars($conn->error);
 }
+$conn->close();
 ?>
