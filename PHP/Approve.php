@@ -1,6 +1,7 @@
 <?php
 require 'db.php';
 
+
 $token = $_GET['token'] ?? '';
 if (!preg_match('/^[a-f0-9]{64}$/', $token)) exit('Invalid token.');
 
@@ -82,7 +83,29 @@ $setPassUrl = $base . '/set_password.php?token=' . $userToken;
 
 $subject = 'Your registration was approved — set your password';
 $message = "Hello {$row['First_Name']},\n\nYour registration was approved. Please set your account password here:\n\n$setPassUrl\n\nThis link expires in 48 hours.";
-@mail($row['email'], $subject, $message, "From: no-reply@example.com\r\n");
-file_put_contents(__DIR__ . '/approval_links.log', "[".date('c')."] Sent set-password to {$row['email']}\nSet-pass: $setPassUrl\n\n", FILE_APPEND);
 
-echo "User approved and emailed.";
+require_once __DIR__ . '/brevo_mail.php';
+
+// Send set-password email to user using Brevo
+$userName = $row['First_Name'] . ' ' . $row['Last_Name'];
+$userEmail = $row['email'];
+
+$base = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
+      . '://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+$setPassUrl = $base . '/set_password.php?token=' . $userToken;
+
+// Send email using Brevo
+$emailResult = sendPasswordSetupEmail($userEmail, $userName, $setPassUrl);
+
+if ($emailResult['success']) {
+    echo "<script>
+        alert('Registration approved! The user has been notified to set their password.');
+        window.location.href = '/Employee_Managment_System/Admin_db.html';
+    </script>";
+} else {
+    // Email failed but approval succeeded - show the link manually
+    echo "<p>Approval successful but email failed to send.</p>";
+    echo "<p>Please send this link to the user manually:</p>";
+    echo "<p><a href='$setPassUrl'>$setPassUrl</a></p>";
+}
+?>
