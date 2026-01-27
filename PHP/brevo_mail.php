@@ -1,7 +1,7 @@
 <?php
 define ('BRVO_API_KEY','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');
 define ('SENDER_EMAIL','musharrafcm97@outlook.com');
-define ('SENDER_NAME','Musharraf');
+define ('SENDER_NAME','EMSByMusharraf');
 
 function sendBrevoEmail($to, $subject, $htmlContent, $textContent = '') {
     
@@ -37,7 +37,7 @@ function sendBrevoEmail($to, $subject, $htmlContent, $textContent = '') {
         CURLOPT_POSTFIELDS => json_encode($data),
         CURLOPT_HTTPHEADER => [
             'accept: application/json',
-            'api-key: ' . BREVO_API_KEY,
+            'api-key: ' . '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',
             'content-type: application/json'
         ],
         CURLOPT_TIMEOUT => 30
