@@ -1,5 +1,5 @@
 <?php
-$conn=mysqli_connect("sql309.infinityfree.com","if0_40963048","Ems9802Mf","if0_40963048_emsbymusharraf");
+$conn=mysqli_connect("localhost","root","","employee_mgt");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
