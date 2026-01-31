@@ -128,3 +128,6 @@ function logout() {
     }
 }
 
+function viewEmployees(){
+    window.location.href = "E_det_rep.html"
+}
