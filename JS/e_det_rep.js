@@ -3,6 +3,38 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     fetchMonthlyData();
+    // Admin update form handler
+    const updateForm = document.getElementById('updateForm');
+    if (updateForm) {
+        updateForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const eid = document.getElementById('updateEid').value.trim();
+            const leave = document.getElementById('updateLeave').value;
+            const hours = document.getElementById('updateHours').value;
+            const msg = document.getElementById('updateMsg');
+            msg.textContent = 'Updating...';
+            fetch('PHP/E_det_rep.php?action=update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ E_id: eid, E_Leave: leave, Working_hour: hours })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    msg.style.color = 'green';
+                    msg.textContent = 'Update successful!';
+                    fetchMonthlyData();
+                } else {
+                    msg.style.color = 'red';
+                    msg.textContent = data.message || 'Update failed.';
+                }
+            })
+            .catch(() => {
+                msg.style.color = 'red';
+                msg.textContent = 'Error updating.';
+            });
+        });
+    }
 });
 
 function fetchMonthlyData() {

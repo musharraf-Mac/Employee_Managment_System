@@ -3,12 +3,12 @@
 require 'db.php';
 
 
-require_once __DIR__ . '/../FPDF/fpdf.php';
+require_once __DIR__ . '/FPDF/fpdf.php';
 
 
 if (isset($_GET['action']) && $_GET['action'] === 'fetch') {
 	// Fetch all employee monthly data from employee_details only
-	$sql = "SELECT E_id, First_Name AS Name, `leave days`, `Working hours` FROM employee_details";
+		$sql = "SELECT E_id, First_Name AS Name, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details";
 	$result = $conn->query($sql);
 	$data = [];
 	if ($result && $result->num_rows > 0) {
@@ -23,8 +23,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'fetch') {
 
 
 if (isset($_GET['action']) && $_GET['action'] === 'pdf' && isset($_GET['id'])) {
+	// Prevent any output before PDF
+	if (ob_get_length()) ob_end_clean();
 	$emp_id = $conn->real_escape_string($_GET['id']);
-	$sql = "SELECT E_id, First_Name AS Name, `leave days`, `Working hours` FROM employee_details WHERE E_id = '$emp_id' LIMIT 1";
+	$sql = "SELECT E_id, First_Name AS Name, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details WHERE E_id = '$emp_id' LIMIT 1";
 	$result = $conn->query($sql);
 	if ($result && $row = $result->fetch_assoc()) {
 		$pdf = new FPDF();
@@ -44,9 +46,32 @@ if (isset($_GET['action']) && $_GET['action'] === 'pdf' && isset($_GET['id'])) {
 		$pdf->Output('D', 'Employee_Report_' . $row['E_id'] . '.pdf');
 		exit;
 	} else {
+		if (ob_get_length()) ob_end_clean();
 		echo 'Employee not found.';
 		exit;
 	}
+}
+
+// Handle admin update (POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'update') {
+	$input = json_decode(file_get_contents('php://input'), true);
+	$eid = isset($input['E_id']) ? trim($input['E_id']) : '';
+	$leave = isset($input['E_Leave']) ? intval($input['E_Leave']) : null;
+	$hours = isset($input['Working_hour']) ? intval($input['Working_hour']) : null;
+	if ($eid === '' || $leave === null || $hours === null) {
+		http_response_code(400);
+		echo json_encode(['success' => false, 'message' => 'Invalid input.']);
+		exit;
+	}
+	$eid = $conn->real_escape_string($eid);
+	$sql = "UPDATE employee_details SET E_Leave = $leave, Working_hour = $hours WHERE E_id = '$eid'";
+	if ($conn->query($sql) === TRUE) {
+		echo json_encode(['success' => true, 'message' => 'Update successful.']);
+	} else {
+		http_response_code(500);
+		echo json_encode(['success' => false, 'message' => 'Update failed.']);
+	}
+	exit;
 }
 
 http_response_code(400);
