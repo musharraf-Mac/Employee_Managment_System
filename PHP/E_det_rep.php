@@ -5,9 +5,10 @@ require 'db.php';
 
 require_once __DIR__ . '/../FPDF/fpdf.php';
 
+
 if (isset($_GET['action']) && $_GET['action'] === 'fetch') {
-	// Fetch all employee monthly data
-	$sql = "SELECT `E_id`, `Name`, `leave days`, `Working hours` FROM employee_report";
+	// Fetch all employee monthly data from employee_details only
+	$sql = "SELECT E_id, First_Name AS Name, `leave days`, `Working hours` FROM employee_details";
 	$result = $conn->query($sql);
 	$data = [];
 	if ($result && $result->num_rows > 0) {
@@ -20,9 +21,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'fetch') {
 	exit;
 }
 
+
 if (isset($_GET['action']) && $_GET['action'] === 'pdf' && isset($_GET['id'])) {
 	$emp_id = $conn->real_escape_string($_GET['id']);
-	$sql = "SELECT `E_id`, `Name`, `leave days`, `Working hours` FROM employee_report WHERE `E_id` = '$emp_id' LIMIT 1";
+	$sql = "SELECT E_id, First_Name AS Name, `leave days`, `Working hours` FROM employee_details WHERE E_id = '$emp_id' LIMIT 1";
 	$result = $conn->query($sql);
 	if ($result && $row = $result->fetch_assoc()) {
 		$pdf = new FPDF();

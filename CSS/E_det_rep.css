@@ -1,0 +1,17 @@
+ .details-container { padding: 40px 20px; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .details-wrapper { max-width: 900px; margin: 0 auto; }
+        .details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .details-header h1 { color: white; font-size: 2.2em; margin: 0; }
+        .header-buttons { display: flex; gap: 10px; }
+        .btn-back { background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 10px; padding: 12px 25px; font-size: 1em; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .btn-back:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .table-container { background: rgba(255,255,255,0.95); border-radius: 15px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .table-scroll { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif; }
+        table thead { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        table th, table td { padding: 16px; text-align: left; font-size: 1em; }
+        table th { font-weight: 600; }
+        table tbody tr:hover { background: #f8f8f8; }
+        .btn-report { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-report:hover { box-shadow: 0 5px 15px rgba(34,197,94,0.3); transform: translateY(-2px); }
+        @media (max-width: 768px) { .details-header { flex-direction: column; align-items: stretch; } .details-header h1 { font-size: 1.3em; } table th, table td { padding: 10px; font-size: 0.9em; } }
