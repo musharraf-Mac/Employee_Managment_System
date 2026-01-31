@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2026 at 04:45 AM
+-- Generation Time: Jan 31, 2026 at 11:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -89,17 +89,19 @@ CREATE TABLE `employee_details` (
   `Department` varchar(100) NOT NULL,
   `Phone` int(20) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `Modified_by` varchar(100) DEFAULT NULL
+  `Modified_by` varchar(100) DEFAULT NULL,
+  `E_Leave` int(11) NOT NULL,
+  `Working_hour` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_details`
 --
 
-INSERT INTO `employee_details` (`E_id`, `First_Name`, `Last_Name`, `Department`, `Phone`, `email`, `Modified_by`) VALUES
-('E0001', 'Musharraf', 'Abd', 'IT', 77444444, 'test3@outlook.com', '1234'),
-('E003', 'Thiyageraja', 'Devanivethitha', 'IT', 77123456, 'nivedha@gamil.com', '1234'),
-('HB3456', 'MSH', 'ABD', 'sasf', 755455, '', NULL);
+INSERT INTO `employee_details` (`E_id`, `First_Name`, `Last_Name`, `Department`, `Phone`, `email`, `Modified_by`, `E_Leave`, `Working_hour`) VALUES
+('E0001', 'Musharraf', 'Abd', 'IT', 77444444, 'test3@outlook.com', '1234', 0, 0),
+('E003', 'Thiyageraja', 'Devanivethitha', 'IT', 77123456, 'nivedha@gamil.com', '1234', 0, 0),
+('HB3456', 'MSH', 'ABD', 'sasf', 755455, '', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
