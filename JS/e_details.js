@@ -3,7 +3,7 @@
  */
 
 let currentEditEmployee = null;
-let currentCheckinEmployee = null;
+// let currentCheckinEmployee = null; // removed
 
 // Load employees when page loads
 document.addEventListener('DOMContentLoaded', function() {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle edit form submission
     document.getElementById('editForm').addEventListener('submit', handleEditSubmit);
-    document.getElementById('checkinForm').addEventListener('submit', handleCheckinSubmit);
+    // document.getElementById('checkinForm').addEventListener('submit', handleCheckinSubmit); // removed
 });
 
 // Load all employees from database
@@ -74,15 +74,12 @@ function displayEmployees(employees) {
             <td>${escapeHtml(emp.First_Name)}</td>
             <td>${escapeHtml(emp.Last_Name)}</td>
             <td>${escapeHtml(emp.Department)}</td>
-            <td>${escapeHtml(emp.phone)}</td>
+            <td>${escapeHtml(emp.Phone || '')}</td>
             <td>${escapeHtml(emp.email)}</td>
             <td>
                 <div class="action-buttons">
                     <button class="btn-edit" onclick="openEditModal('${emp.E_id}')">
                         <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="btn-checkin" onclick="openCheckinModal('${emp.E_id}', '${escapeHtml(emp.First_Name)} ${escapeHtml(emp.Last_Name)}')">
-                        <i class="fas fa-clock"></i> Check-in
                     </button>
                     <button class="btn-delete" onclick="deleteEmployee('${emp.E_id}')">
                         <i class="fas fa-trash"></i> Delete
@@ -210,7 +207,7 @@ function openEditModal(employeeId) {
             document.getElementById('editFirstName').value = emp.First_Name || '';
             document.getElementById('editLastName').value = emp.Last_Name || '';
             document.getElementById('editDepartment').value = emp.Department || '';
-            document.getElementById('editPhone').value = emp.phone || '';
+            document.getElementById('editPhone').value = emp.Phone || emp.phone || '';
             document.getElementById('editEmail').value = emp.email || '';
             
             console.log('Form populated with:', emp);
@@ -239,7 +236,6 @@ function handleEditSubmit(e) {
     e.preventDefault();
     
     const employeeId = document.getElementById('editE_id').value;
-    const formData = new FormData(document.getElementById('editForm'));
     
     const data = {
         E_id: employeeId,
@@ -271,63 +267,6 @@ function handleEditSubmit(e) {
     .catch(error => {
         console.error('Error:', error);
         alert('❌ Error updating employee details');
-    });
-}
-
-// Open check-in modal
-function openCheckinModal(employeeId, employeeName) {
-    currentCheckinEmployee = employeeId;
-    document.getElementById('checkinE_id').value = employeeId;
-    document.getElementById('checkinName').value = employeeName;
-    document.getElementById('checkinTime').value = '';
-    document.getElementById('checkinNotes').value = '';
-    
-    // Set current time as default
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    document.getElementById('checkinTime').value = `${hours}:${minutes}`;
-    
-    document.getElementById('checkinModal').classList.add('active');
-}
-
-// Close check-in modal
-function closeCheckinModal() {
-    document.getElementById('checkinModal').classList.remove('active');
-    currentCheckinEmployee = null;
-}
-
-// Handle check-in form submission
-function handleCheckinSubmit(e) {
-    e.preventDefault();
-    
-    const data = {
-        E_id: document.getElementById('checkinE_id').value,
-        check_in_time: document.getElementById('checkinTime').value,
-        notes: document.getElementById('checkinNotes').value
-    };
-
-    fetch('PHP/update_checkin.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            alert('✓ Check-in recorded successfully!');
-            closeCheckinModal();
-            loadEmployees();
-        } else {
-            alert('✗ Error: ' + result.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Error recording check-in');
     });
 }
 
@@ -380,13 +319,8 @@ function escapeHtml(text) {
 // Close modal when clicking outside
 document.addEventListener('click', function(e) {
     const editModal = document.getElementById('editModal');
-    const checkinModal = document.getElementById('checkinModal');
-    
     if (e.target === editModal) {
         closeEditModal();
-    }
-    if (e.target === checkinModal) {
-        closeCheckinModal();
     }
 });
 
@@ -405,7 +339,7 @@ function searchEmployees() {
         const firstName = emp.First_Name.toLowerCase();
         const lastName = emp.Last_Name.toLowerCase();
         const department = emp.Department.toLowerCase();
-        const phone = emp.phone.toLowerCase();
+        const phone = (emp.Phone || '').toLowerCase();
         const email = emp.email.toLowerCase();
         
         return E_id.includes(searchInput) || 
@@ -435,15 +369,12 @@ function searchEmployees() {
             <td>${escapeHtml(emp.First_Name)}</td>
             <td>${escapeHtml(emp.Last_Name)}</td>
             <td>${escapeHtml(emp.Department)}</td>
-            <td>${escapeHtml(emp.phone)}</td>
+            <td>${escapeHtml(emp.Phone || '')}</td>
             <td>${escapeHtml(emp.email)}</td>
             <td>
                 <div class="action-buttons">
                     <button class="btn-edit" onclick="openEditModal('${emp.E_id}')">
                         <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="btn-checkin" onclick="openCheckinModal('${emp.E_id}', '${escapeHtml(emp.First_Name)} ${escapeHtml(emp.Last_Name)}')">
-                        <i class="fas fa-clock"></i> Check-in
                     </button>
                     <button class="btn-delete" onclick="deleteEmployee('${emp.E_id}')">
                         <i class="fas fa-trash"></i> Delete

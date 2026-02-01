@@ -15,7 +15,7 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 // Fetch all employees
-$query = "SELECT E_id, First_Name, Last_Name, Department, phone, email FROM employee_details ORDER BY E_id ASC";
+$query = "SELECT E_id, First_Name, Last_Name, Department, Phone, email FROM employee_details ORDER BY E_id ASC";
 $result = $conn->query($query);
 
 if ($result) {

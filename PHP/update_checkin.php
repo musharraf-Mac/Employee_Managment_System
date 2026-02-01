@@ -1,4 +1,3 @@
-<?php
 session_start();
 require "db.php";
 
@@ -87,4 +86,9 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
+?>
+<?php
+// This endpoint is deprecated. Check-in feature has been removed.
+http_response_code(410);
+echo json_encode(['success' => false, 'message' => 'Check-in feature is no longer available.']);
 ?>
