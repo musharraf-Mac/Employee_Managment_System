@@ -11,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const eid = document.getElementById('updateEid').value.trim();
             const leave = document.getElementById('updateLeave').value;
             const hours = document.getElementById('updateHours').value;
+            const attendance = document.getElementById('updateAttendance').value;
             const msg = document.getElementById('updateMsg');
             msg.textContent = 'Updating...';
             fetch('PHP/E_det_rep.php?action=update', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ E_id: eid, E_Leave: leave, Working_hour: hours })
+                body: JSON.stringify({ E_id: eid, E_Leave: leave, Working_hour: hours, Attendance: attendance })
             })
             .then(res => res.json())
             .then(data => {
@@ -42,7 +43,7 @@ function fetchMonthlyData() {
         .then(res => res.json())
         .then(data => renderMonthlyTable(data))
         .catch(() => {
-            document.getElementById('monthlyList').innerHTML = '<tr><td colspan="5" style="text-align:center;">Error loading data.</td></tr>';
+            document.getElementById('monthlyList').innerHTML = '<tr><td colspan="6" style="text-align:center;">Error loading data.</td></tr>';
         });
 }
 
@@ -50,7 +51,7 @@ function renderMonthlyTable(data) {
     const tbody = document.getElementById('monthlyList');
     tbody.innerHTML = '';
     if (!data.length) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No data found.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No data found.</td></tr>`;
         return;
     }
     data.forEach(emp => {
@@ -58,6 +59,7 @@ function renderMonthlyTable(data) {
         tr.innerHTML = `
             <td>${emp.E_id}</td>
             <td>${emp.Name}</td>
+            <td>${emp.Attendance || '0'}</td>
             <td>${emp['leave days']}</td>
             <td>${emp['Working hours']}</td>
             <td><button class="btn-report" onclick="generateReport('${emp.E_id}')">Generate Report</button></td>

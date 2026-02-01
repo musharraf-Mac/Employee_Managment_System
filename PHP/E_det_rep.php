@@ -8,7 +8,7 @@ require_once __DIR__ . '/FPDF/fpdf.php';
 
 if (isset($_GET['action']) && $_GET['action'] === 'fetch') {
 	// Fetch all employee monthly data from employee_details only
-		$sql = "SELECT E_id, First_Name AS Name, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details";
+		$sql = "SELECT E_id, First_Name AS Name, Attendance, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details";
 	$result = $conn->query($sql);
 	$data = [];
 	if ($result && $result->num_rows > 0) {
@@ -26,7 +26,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'pdf' && isset($_GET['id'])) {
 	// Prevent any output before PDF
 	if (ob_get_length()) ob_end_clean();
 	$emp_id = $conn->real_escape_string($_GET['id']);
-	$sql = "SELECT E_id, First_Name AS Name, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details WHERE E_id = '$emp_id' LIMIT 1";
+	$sql = "SELECT E_id, First_Name AS Name, Attendance, E_Leave AS `leave days`, Working_hour AS `Working hours` FROM employee_details WHERE E_id = '$emp_id' LIMIT 1";
 	$result = $conn->query($sql);
 	if ($result && $row = $result->fetch_assoc()) {
 		$pdf = new FPDF();
@@ -39,6 +39,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'pdf' && isset($_GET['id'])) {
 		$pdf->Cell(0, 10, $row['E_id'], 0, 1);
 		$pdf->Cell(50, 10, 'Name:', 0, 0);
 		$pdf->Cell(0, 10, $row['Name'], 0, 1);
+		$pdf->Cell(50, 10, 'Attendance:', 0, 0);
+		$pdf->Cell(0, 10, $row['Attendance'] ?? '0', 0, 1);
 		$pdf->Cell(50, 10, 'Leave Days (Month):', 0, 0);
 		$pdf->Cell(0, 10, $row['leave days'], 0, 1);
 		$pdf->Cell(50, 10, 'Working Hours (Month):', 0, 0);
@@ -58,13 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['ac
 	$eid = isset($input['E_id']) ? trim($input['E_id']) : '';
 	$leave = isset($input['E_Leave']) ? intval($input['E_Leave']) : null;
 	$hours = isset($input['Working_hour']) ? intval($input['Working_hour']) : null;
-	if ($eid === '' || $leave === null || $hours === null) {
+	$attendance = isset($input['Attendance']) ? intval($input['Attendance']) : null;
+	if ($eid === '' || $leave === null || $hours === null || $attendance === null) {
 		http_response_code(400);
 		echo json_encode(['success' => false, 'message' => 'Invalid input.']);
 		exit;
 	}
 	$eid = $conn->real_escape_string($eid);
-	$sql = "UPDATE employee_details SET E_Leave = $leave, Working_hour = $hours WHERE E_id = '$eid'";
+	$sql = "UPDATE employee_details SET E_Leave = $leave, Working_hour = $hours, Attendance = $attendance WHERE E_id = '$eid'";
 	if ($conn->query($sql) === TRUE) {
 		echo json_encode(['success' => true, 'message' => 'Update successful.']);
 	} else {

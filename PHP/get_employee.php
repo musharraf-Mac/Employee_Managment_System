@@ -24,7 +24,7 @@ if (empty($E_id)) {
 }
 
 // Fetch specific employee
-$stmt = $conn->prepare("SELECT E_id, First_Name, Last_Name, Department, phone, email FROM employee_details WHERE E_id = ?");
+$stmt = $conn->prepare("SELECT E_id, First_Name, Last_Name, Department, Phone, email, Attendance FROM employee_details WHERE E_id = ?");
 
 if (!$stmt) {
     http_response_code(500);
