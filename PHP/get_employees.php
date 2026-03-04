@@ -7,12 +7,7 @@ require "db.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
-// Check if admin is logged in
-if (!isset($_SESSION['admin_id'])) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Admin session not found. Please login first.']);
-    exit;
-}
+// Public endpoint - no authentication required for viewing employee directory
 
 // Fetch all employees
 $query = "SELECT E_id, First_Name, Last_Name, Department, Phone, email, Attendance FROM employee_details ORDER BY E_id ASC";

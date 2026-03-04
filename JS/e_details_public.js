@@ -58,10 +58,10 @@ function displayEmployees(employees) {
 
     tbody.innerHTML = employees.map(emp => `
         <tr>
-            <td>${escapeHtml(emp.E_id)}</td>
-            <td>${escapeHtml(emp.First_Name)} ${escapeHtml(emp.Last_Name)}</td>
-            <td>${escapeHtml(emp.Department)}</td>
-            <td>${escapeHtml(emp.phone)}</td>
+            <td>${escapeHtml(emp.E_id || '')}</td>
+            <td>${escapeHtml(emp.First_Name || '')} ${escapeHtml(emp.Last_Name || '')}</td>
+            <td>${escapeHtml(emp.Department || '')}</td>
+            <td>${escapeHtml(emp.Phone || '')}</td>
             <td>
                 <button class="view-details-btn" onclick="openDetailsModal('${emp.E_id}')">
                     <i class="fas fa-eye"></i> View Details
@@ -94,13 +94,13 @@ function openDetailsModal(employeeId) {
     }
 
     // Populate modal with employee data
-    document.getElementById('modalEmployeeName').textContent = `${escapeHtml(employee.First_Name)} ${escapeHtml(employee.Last_Name)}`;
-    document.getElementById('detailE_id').textContent = escapeHtml(employee.E_id);
-    document.getElementById('detailFirstName').textContent = escapeHtml(employee.First_Name);
-    document.getElementById('detailLastName').textContent = escapeHtml(employee.Last_Name);
-    document.getElementById('detailDepartment').textContent = escapeHtml(employee.Department);
-    document.getElementById('detailPhone').textContent = escapeHtml(employee.phone);
-    document.getElementById('detailEmail').textContent = escapeHtml(employee.email);
+    document.getElementById('modalEmployeeName').textContent = `${escapeHtml(employee.First_Name || '')} ${escapeHtml(employee.Last_Name || '')}`;
+    document.getElementById('detailE_id').textContent = escapeHtml(employee.E_id || '');
+    document.getElementById('detailFirstName').textContent = escapeHtml(employee.First_Name || '');
+    document.getElementById('detailLastName').textContent = escapeHtml(employee.Last_Name || '');
+    document.getElementById('detailDepartment').textContent = escapeHtml(employee.Department || '');
+    document.getElementById('detailPhone').textContent = escapeHtml(employee.Phone || '');
+    document.getElementById('detailEmail').textContent = escapeHtml(employee.email || '');
 
     document.getElementById('detailsModal').classList.add('active');
 }
@@ -121,12 +121,12 @@ function searchEmployees() {
     
     // Filter employees based on search query
     const filteredEmployees = allEmployeesData.filter(emp => {
-        const E_id = emp.E_id.toLowerCase();
-        const firstName = emp.First_Name.toLowerCase();
-        const lastName = emp.Last_Name.toLowerCase();
-        const department = emp.Department.toLowerCase();
-        const phone = emp.phone.toLowerCase();
-        const email = emp.email.toLowerCase();
+        const E_id = (emp.E_id || '').toLowerCase();
+        const firstName = (emp.First_Name || '').toLowerCase();
+        const lastName = (emp.Last_Name || '').toLowerCase();
+        const department = (emp.Department || '').toLowerCase();
+        const phone = (emp.Phone || '').toString().toLowerCase();
+        const email = (emp.email || '').toLowerCase();
         
         return E_id.includes(searchInput) || 
                firstName.includes(searchInput) || 
@@ -151,10 +151,10 @@ function searchEmployees() {
     
     tbody.innerHTML = filteredEmployees.map(emp => `
         <tr>
-            <td>${escapeHtml(emp.E_id)}</td>
-            <td>${escapeHtml(emp.First_Name)} ${escapeHtml(emp.Last_Name)}</td>
-            <td>${escapeHtml(emp.Department)}</td>
-            <td>${escapeHtml(emp.phone)}</td>
+            <td>${escapeHtml(emp.E_id || '')}</td>
+            <td>${escapeHtml(emp.First_Name || '')} ${escapeHtml(emp.Last_Name || '')}</td>
+            <td>${escapeHtml(emp.Department || '')}</td>
+            <td>${escapeHtml(emp.Phone || '')}</td>
             <td>
                 <button class="view-details-btn" onclick="openDetailsModal('${emp.E_id}')">
                     <i class="fas fa-eye"></i> View Details
@@ -171,6 +171,8 @@ function goBack() {
 
 // Escape HTML to prevent XSS
 function escapeHtml(text) {
+    if (text === null || text === undefined) return '';
+    const str = String(text);
     const map = {
         '&': '&amp;',
         '<': '&lt;',
@@ -178,7 +180,7 @@ function escapeHtml(text) {
         '"': '&quot;',
         "'": '&#039;'
     };
-    return text.replace(/[&<>"']/g, m => map[m]);
+    return str.replace(/[&<>"']/g, m => map[m]);
 }
 
 // Close modal when clicking outside

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2026 at 11:37 PM
+-- Generation Time: Mar 03, 2026 at 03:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -79,6 +79,28 @@ INSERT INTO `admin_info_temp` (`First_Name`, `Last_Name`, `Phone`, `Email`, `E_i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employee_checkin`
+--
+
+CREATE TABLE `employee_checkin` (
+  `id` int(11) NOT NULL,
+  `E_id` varchar(50) NOT NULL,
+  `check_in_time` datetime NOT NULL,
+  `notes` text DEFAULT NULL,
+  `created_by` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_checkin`
+--
+
+INSERT INTO `employee_checkin` (`id`, `E_id`, `check_in_time`, `notes`, `created_by`, `created_at`) VALUES
+(1, 'E0001', '2026-02-01 22:38:00', '', 'musha sdfsdf', '2026-02-01 17:08:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee_details`
 --
 
@@ -91,17 +113,20 @@ CREATE TABLE `employee_details` (
   `email` varchar(100) NOT NULL,
   `Modified_by` varchar(100) DEFAULT NULL,
   `E_Leave` int(11) NOT NULL,
-  `Working_hour` int(11) NOT NULL
+  `Working_hour` int(11) NOT NULL,
+  `Attendance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee_details`
 --
 
-INSERT INTO `employee_details` (`E_id`, `First_Name`, `Last_Name`, `Department`, `Phone`, `email`, `Modified_by`, `E_Leave`, `Working_hour`) VALUES
-('E0001', 'Musharraf', 'Abd', 'IT', 77444444, 'test3@outlook.com', '1234', 0, 0),
-('E003', 'Thiyageraja', 'Devanivethitha', 'IT', 77123456, 'nivedha@gamil.com', '1234', 0, 0),
-('HB3456', 'MSH', 'ABD', 'sasf', 755455, '', NULL, 0, 0);
+INSERT INTO `employee_details` (`E_id`, `First_Name`, `Last_Name`, `Department`, `Phone`, `email`, `Modified_by`, `E_Leave`, `Working_hour`, `Attendance`) VALUES
+('E0001', 'Musharraf R', 'Abd', 'IT', 77444444, 'test3@outlook.com', '1234', 4, 160, 16),
+('E003', 'Thiyageraja', 'Devanivethitha', 'IT', 77123456, 'nivedha@gamil.com', '1234', 5, 42, 7),
+('E123', 'Jhon', 'Mactavish', 'IT', 2147483647, 'jhon@gmail.com', '1234', 5, 135, 22),
+('E2233', 'mbn', 'tuyu', 'Acc', 774444555, 'mbn@outlook.com', '1234', 0, 0, 0),
+('HB3456', 'MSH', 'ABD', 'sasf', 755455, 'MSH@gmail.com', NULL, 4, 70, 17);
 
 --
 -- Indexes for dumped tables
@@ -120,6 +145,13 @@ ALTER TABLE `admin_info_temp`
   ADD PRIMARY KEY (`E_id`);
 
 --
+-- Indexes for table `employee_checkin`
+--
+ALTER TABLE `employee_checkin`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `E_id` (`E_id`);
+
+--
 -- Indexes for table `employee_details`
 --
 ALTER TABLE `employee_details`
@@ -127,8 +159,24 @@ ALTER TABLE `employee_details`
   ADD KEY `admin_info` (`Modified_by`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `employee_checkin`
+--
+ALTER TABLE `employee_checkin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `employee_checkin`
+--
+ALTER TABLE `employee_checkin`
+  ADD CONSTRAINT `employee_checkin_ibfk_1` FOREIGN KEY (`E_id`) REFERENCES `employee_details` (`E_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `employee_details`
